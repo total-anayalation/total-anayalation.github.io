@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Name — CS · Data Science · Education Policy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --plum:       #3b1f5e;
+      --violet:     #6b3fa0;
+      --lavender:   #a67fd4;
+      --lilac:      #d8c4f0;
+      --blush:      #f5eeff;
+      --cream:      #fdf9ff;
+      --ink:        #1e0f33;
+      --mist:       #e8daf5;
+      --gold:       #c9a84c;
+      --rose:       #d4607a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: relative;
+      padding: 3.5rem 2rem 2rem;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .site-name {
+      font-family: 'Lora', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 600;
+      color: var(--plum);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .site-name em {
+      font-style: italic;
+      color: var(--violet);
+    }
+
+    .tagline {
+      margin-top: 0.6rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--lavender);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 1.2rem;
+    }
+
+    .tag {
+      background: var(--mist);
+      color: var(--violet);
+      border: 1px solid var(--lilac);
+      border-radius: 100px;
+      padding: 0.25rem 0.85rem;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── DECO BLOB ── */
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.18;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .blob-1 { width: 500px; height: 500px; background: var(--violet); top: -150px; right: -100px; }
+    .blob-2 { width: 350px; height: 350px; background: var(--rose);   bottom: 50px;  left: -80px; }
+
+    /* ── NAV GRID ── */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 1.5rem 1.5rem 5rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.75);
+      border: 1.5px solid var(--lilac);
+      border-radius: 20px;
+      padding: 2rem 1.8rem 1.8rem;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(107,63,160,0.06), transparent);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(59,31,94,0.14);
+      border-color: var(--lavender);
+      background: rgba(255,255,255,0.92);
+    }
+
+    .card:hover::after { opacity: 1; }
+
+    .card-icon {
+      font-size: 2rem;
+      line-height: 1;
+      display: block;
+    }
+
+    .card-title {
+      font-family: 'Lora', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--plum);
+    }
+
+    .card-desc {
+      font-size: 0.82rem;
+      color: #6b5e80;
+      line-height: 1.55;
+    }
+
+    .card-arrow {
+      margin-top: auto;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--lavender);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: gap 0.2s;
+    }
+
+    .card:hover .card-arrow { gap: 0.6rem; color: var(--violet); }
+
+    /* Featured card: About */
+    .card.featured {
+      grid-column: span 2;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 1.5rem;
+      background: linear-gradient(135deg, var(--plum), var(--violet));
+      border-color: transparent;
+      color: white;
+    }
+
+    .card.featured .card-title { color: white; }
+    .card.featured .card-desc  { color: rgba(255,255,255,0.72); }
+    .card.featured .card-arrow { color: var(--lilac); }
+    .card.featured:hover .card-arrow { color: white; }
+    .card.featured::after { background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent); }
+
+    @media (max-width: 500px) {
+      .card.featured { grid-column: span 1; flex-direction: column; }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative; z-index: 1;
+      text-align: center;
+      padding: 2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--lavender);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── PAGE FADE IN ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    header  { animation: fadeUp 0.6s ease both; }
+    .card:nth-child(1) { animation: fadeUp 0.5s 0.15s ease both; }
+    .card:nth-child(2) { animation: fadeUp 0.5s 0.22s ease both; }
+    .card:nth-child(3) { animation: fadeUp 0.5s 0.29s ease both; }
+    .card:nth-child(4) { animation: fadeUp 0.5s 0.36s ease both; }
+    .card:nth-child(5) { animation: fadeUp 0.5s 0.43s ease both; }
+    .card:nth-child(6) { animation: fadeUp 0.5s 0.50s ease both; }
+    .card:nth-child(7) { animation: fadeUp 0.5s 0.57s ease both; }
+
+    /* ── SECTION DIVIDER ── */
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--lavender);
+      margin: 2.5rem 0 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <header>
+    <div class="site-name">Your <em>Name</em></div>
+    <div class="tagline">CS · Data Science · Education Policy · UW–Madison</div>
+    <div class="tags">
+      <span class="tag">🤖 AI Safety</span>
+      <span class="tag">📊 Data Science</span>
+      <span class="tag">🎓 Education Policy</span>
+      <span class="tag">💻 Computer Science</span>
+      <span class="tag">🌸 UW–Madison</span>
+    </div>
+  </header>
+
+  <main>
+    <p class="section-label">→ explore</p>
+
+    <div class="grid">
+
+      <!-- ABOUT — featured wide card -->
+      <a href="about.html" class="card featured">
+        <span class="card-icon">🪐</span>
+        <div>
+          <div class="card-title">About Me</div>
+          <div class="card-desc">Who I am, what I care about, and how I got here. CS × data science × education policy — it's more connected than it sounds.</div>
+          <div class="card-arrow">Meet me →</div>
+        </div>
+      </a>
+
+      <!-- PROJECTS -->
+      <a href="projects.html" class="card">
+        <span class="card-icon">🔬</span>
+        <div class="card-title">Projects</div>
+        <div class="card-desc">Things I've built, researched, and broken. From ML models to policy memos.</div>
+        <div class="card-arrow">See the work →</div>
+      </a>
+
+      <!-- NOW -->
+      <a href="now.html" class="card">
+        <span class="card-icon">📡</span>
+        <div class="card-title">What I'm Up To</div>
+        <div class="card-desc">Current classes, obsessions, and things occupying my brain this semester.</div>
+        <div class="card-arrow">Check in →</div>
+      </a>
+
+      <!-- BLOG -->
+      <a href="blog.html" class="card">
+        <span class="card-icon">✍️</span>
+        <div class="card-title">Writing</div>
+        <div class="card-desc">Essays, notes, and half-formed thoughts on AI, education, and everything in between.</div>
+        <div class="card-arrow">Read →</div>
+      </a>
+
+      <!-- INTERESTS -->
+      <a href="interests.html" class="card">
+        <span class="card-icon">🌿</span>
+        <div class="card-title">Interests</div>
+        <div class="card-desc">Beyond the resume. Things I love, rabbit holes I fall into, what makes me, me.</div>
+        <div class="card-arrow">Explore →</div>
+      </a>
+
+      <!-- READING LIST -->
+      <a href="reading.html" class="card">
+        <span class="card-icon">📚</span>
+        <div class="card-title">Reading List</div>
+        <div class="card-desc">Papers, books, and links I keep coming back to. Mostly AI safety, policy, and the occasional novel.</div>
+        <div class="card-arrow">Browse →</div>
+      </a>
+
+      <!-- CONTACT -->
+      <a href="contact.html" class="card">
+        <span class="card-icon">💌</span>
+        <div class="card-title">Contact & Links</div>
+        <div class="card-desc">Find me around the internet. Always happy to chat about research, ideas, or collaborations.</div>
+        <div class="card-arrow">Say hi →</div>
+      </a>
+
+    </div>
+  </main>
+
+  <footer>made with care · uw–madison · 2025</footer>
+
+</body>
+</html>

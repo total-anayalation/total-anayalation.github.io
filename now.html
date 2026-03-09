@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Now — Your Name</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .now-date {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--mist);
+      border: 1px solid var(--lilac);
+      border-radius: 100px;
+      padding: 0.3rem 0.9rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--violet);
+      letter-spacing: 0.05em;
+      margin-bottom: 2rem;
+    }
+
+    .now-section { margin-bottom: 2.5rem; }
+
+    .now-section h2 {
+      font-family: 'Lora', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--plum);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .now-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .now-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      background: rgba(255,255,255,0.75);
+      border: 1.5px solid var(--lilac);
+      border-radius: 12px;
+      padding: 0.85rem 1.1rem;
+      font-size: 0.88rem;
+      color: #3a2b4e;
+      line-height: 1.5;
+      backdrop-filter: blur(6px);
+    }
+
+    .now-list li span:first-child { flex-shrink: 0; }
+
+    .status-dot {
+      display: inline-block;
+      width: 8px; height: 8px;
+      background: #6dbb84;
+      border-radius: 50%;
+      margin-right: 0.4rem;
+      box-shadow: 0 0 0 3px rgba(109,187,132,0.25);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 3px rgba(109,187,132,0.25); }
+      50%       { box-shadow: 0 0 0 6px rgba(109,187,132,0.10); }
+    }
+  </style>
+</head>
+<body>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <nav>
+    <a href="index.html" class="nav-home">Your <em>Name</em></a>
+    <div class="nav-links">
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="now.html" class="active">Now</a>
+      <a href="blog.html">Writing</a>
+      <a href="interests.html">Interests</a>
+      <a href="reading.html">Reading</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="page">
+    <div class="page-header">
+      <div class="page-kicker">📡 a living snapshot</div>
+      <h1 class="page-title">What I'm <em>Up To</em></h1>
+      <p class="page-sub">A /now page — a snapshot of what's occupying my time, brain, and attention right now.</p>
+    </div>
+
+    <div class="now-date"><span class="status-dot"></span> Updated — Spring 2025</div>
+
+    <div class="now-section">
+      <h2>📚 Taking This Semester</h2>
+      <ul class="now-list">
+        <li><span>💻</span><span><strong>Course Name</strong> — one sentence on what it covers and why you're excited about it.</span></li>
+        <li><span>📊</span><span><strong>Another Course</strong> — brief note on the content or a fun thing you're learning.</span></li>
+        <li><span>🏛️</span><span><strong>Policy Course</strong> — what's the topic and what draws you to it?</span></li>
+        <li><span>🤖</span><span><strong>AI / ML Elective</strong> — a line on what you're exploring.</span></li>
+      </ul>
+    </div>
+
+    <div class="now-section">
+      <h2>🔭 Working On</h2>
+      <ul class="now-list">
+        <li><span>🧪</span><span>A project or research thing you're actively doing — describe it briefly.</span></li>
+        <li><span>📖</span><span>Something you're reading deeply or working through.</span></li>
+        <li><span>🤝</span><span>A club, organization, or collaboration you're involved in right now.</span></li>
+      </ul>
+    </div>
+
+    <div class="now-section">
+      <h2>🌀 Thinking About</h2>
+      <ul class="now-list">
+        <li><span>💭</span><span>A question or idea that's been living in your head lately.</span></li>
+        <li><span>💭</span><span>Something from AI safety or education policy you keep returning to.</span></li>
+        <li><span>💭</span><span>A book, paper, or conversation that changed how you see something recently.</span></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <footer>uw–madison · made with care</footer>
+</body>
+</html>

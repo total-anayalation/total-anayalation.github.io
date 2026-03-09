@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interests — Your Name</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .interest-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .interest-card {
+      background: rgba(255,255,255,0.75);
+      border: 1.5px solid var(--lilac);
+      border-radius: 16px;
+      padding: 1.4rem 1.2rem;
+      backdrop-filter: blur(8px);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .interest-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(59,31,94,0.10);
+    }
+
+    .interest-icon { font-size: 2rem; margin-bottom: 0.6rem; display: block; }
+
+    .interest-name {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--plum);
+      margin-bottom: 0.3rem;
+    }
+
+    .interest-note {
+      font-size: 0.8rem;
+      color: #6b5e80;
+      line-height: 1.5;
+    }
+
+    .prose { margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <nav>
+    <a href="index.html" class="nav-home">Your <em>Name</em></a>
+    <div class="nav-links">
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="now.html">Now</a>
+      <a href="blog.html">Writing</a>
+      <a href="interests.html" class="active">Interests</a>
+      <a href="reading.html">Reading</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="page">
+    <div class="page-header">
+      <div class="page-kicker">🌿 beyond the resume</div>
+      <h1 class="page-title">My <em>Interests</em></h1>
+      <p class="page-sub">The things I genuinely love, the rabbit holes I fall into, and what I'd talk about forever if you let me.</p>
+    </div>
+
+    <div class="interest-grid">
+
+      <div class="interest-card">
+        <span class="interest-icon">🤖</span>
+        <div class="interest-name">AI Safety</div>
+        <div class="interest-note">Alignment, interpretability, governance — the whole messy beautiful field.</div>
+      </div>
+
+      <div class="interest-card">
+        <span class="interest-icon">📖</span>
+        <div class="interest-name">Reading</div>
+        <div class="interest-note">Non-fiction, weird essays, the occasional novel. Always have 3 books half-finished.</div>
+      </div>
+
+      <div class="interest-card">
+        <span class="interest-icon">☕</span>
+        <div class="interest-name">Coffee Shops</div>
+        <div class="interest-note">My natural habitat. I have opinions about pour-overs.</div>
+      </div>
+
+      <div class="interest-card">
+        <span class="interest-icon">🌊</span>
+        <div class="interest-name">Add One Here</div>
+        <div class="interest-note">Replace with something you actually love — a hobby, a place, a passion.</div>
+      </div>
+
+      <div class="interest-card">
+        <span class="interest-icon">🎮</span>
+        <div class="interest-name">Another One</div>
+        <div class="interest-note">Make this feel like you. What do people who know you well always associate with you?</div>
+      </div>
+
+      <div class="interest-card">
+        <span class="interest-icon">🏞️</span>
+        <div class="interest-name">Madison's Lakes</div>
+        <div class="interest-note">Mendota, Monona — hard to beat as a campus backdrop.</div>
+      </div>
+
+      <div class="interest-card">
+        <span class="interest-icon">🧩</span>
+        <div class="interest-name">Hard Problems</div>
+        <div class="interest-note">Whether it's a puzzle, a research question, or a policy knot — I love a good tangle.</div>
+      </div>
+
+      <div class="interest-card">
+        <span class="interest-icon">🌐</span>
+        <div class="interest-name">Internet Rabbit Holes</div>
+        <div class="interest-note">Wikipedia, old blogs, obscure papers. You know the type.</div>
+      </div>
+
+    </div>
+
+    <div class="prose">
+      <p>Feel free to add a short paragraph here about who you are outside academics — a bit of personality goes a long way on a personal site.</p>
+    </div>
+
+  </div>
+
+  <footer>uw–madison · made with care</footer>
+</body>
+</html>

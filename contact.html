@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — Your Name</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .link-card {
+      background: rgba(255,255,255,0.75);
+      border: 1.5px solid var(--lilac);
+      border-radius: 16px;
+      padding: 1.4rem 1.3rem;
+      text-decoration: none;
+      color: inherit;
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .link-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(59,31,94,0.12);
+      border-color: var(--lavender);
+    }
+
+    .link-icon { font-size: 1.8rem; }
+
+    .link-name {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--plum);
+    }
+
+    .link-handle {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--lavender);
+    }
+
+    .link-arrow {
+      font-size: 0.75rem;
+      color: var(--violet);
+      font-weight: 500;
+      margin-top: auto;
+    }
+
+    .email-box {
+      background: linear-gradient(135deg, var(--plum), var(--violet));
+      border-radius: 20px;
+      padding: 2rem 1.8rem;
+      color: white;
+      margin-bottom: 2rem;
+    }
+
+    .email-box h2 {
+      font-family: 'Lora', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .email-box p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .email-btn {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 100px;
+      padding: 0.5rem 1.2rem;
+      font-size: 0.82rem;
+      font-family: 'DM Mono', monospace;
+      color: white;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .email-btn:hover { background: rgba(255,255,255,0.25); }
+  </style>
+</head>
+<body>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <nav>
+    <a href="index.html" class="nav-home">Your <em>Name</em></a>
+    <div class="nav-links">
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="now.html">Now</a>
+      <a href="blog.html">Writing</a>
+      <a href="interests.html">Interests</a>
+      <a href="reading.html">Reading</a>
+      <a href="contact.html" class="active">Contact</a>
+    </div>
+  </nav>
+
+  <div class="page">
+    <div class="page-header">
+      <div class="page-kicker">💌 say hi</div>
+      <h1 class="page-title">Find <em>Me</em></h1>
+      <p class="page-sub">Always happy to chat about AI safety, education policy, research ideas, or anything else that seems interesting.</p>
+    </div>
+
+    <div class="email-box">
+      <h2>Send me an email</h2>
+      <p>Best way to reach me for anything substantive — research chats, collaboration ideas, or just to say hello.</p>
+      <a href="mailto:youremail@wisc.edu" class="email-btn">youremail@wisc.edu →</a>
+    </div>
+
+    <div class="link-grid">
+
+      <a href="https://github.com/yourusername" target="_blank" class="link-card">
+        <span class="link-icon">🐙</span>
+        <div class="link-name">GitHub</div>
+        <div class="link-handle">@yourusername</div>
+        <div class="link-arrow">See my code →</div>
+      </a>
+
+      <a href="https://linkedin.com/in/yourprofile" target="_blank" class="link-card">
+        <span class="link-icon">💼</span>
+        <div class="link-name">LinkedIn</div>
+        <div class="link-handle">your name</div>
+        <div class="link-arrow">Connect →</div>
+      </a>
+
+      <a href="https://twitter.com/yourhandle" target="_blank" class="link-card">
+        <span class="link-icon">🐦</span>
+        <div class="link-name">Twitter / X</div>
+        <div class="link-handle">@yourhandle</div>
+        <div class="link-arrow">Follow →</div>
+      </a>
+
+      <a href="resume.pdf" target="_blank" class="link-card">
+        <span class="link-icon">📄</span>
+        <div class="link-name">Resume</div>
+        <div class="link-handle">PDF</div>
+        <div class="link-arrow">Download →</div>
+      </a>
+
+    </div>
+  </div>
+
+  <footer>uw–madison · made with care</footer>
+</body>
+</html>
