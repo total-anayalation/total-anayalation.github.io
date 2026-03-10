@@ -186,12 +186,16 @@
       transform: scale(1.5);
     }
 
-    /* ── BUTTERFLY LIFT-OFF ── */
-    /* JS switches hero-fly-anchor to position:fixed on scroll.
-       transform-origin ensures rotation pivots from center. */
+    /* ── BUTTERFLY ── */
+    /* Stays in normal document flow the whole time.
+       JS only ever sets transform:translate+rotate — never touches position/top/left.
+       position:relative + z-index lets it float above other content during flight. */
     #hero-fly-anchor {
+      position: relative;
+      z-index: 50;
       transform-origin: center center;
-      will-change: transform, top, left;
+      will-change: transform;
+      display: inline-block;
     }
 
     /* ── SECTIONS ── */
@@ -678,61 +682,56 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
 
-    // ── BUTTERFLY LIFT-OFF ──
-    // The hero butterfly itself lifts off its spot and flies around the page.
-    // Technique: measure its natural position, then on first scroll switch it
-    // to position:fixed at those exact screen coordinates so there's zero jump,
-    // then animate from there using the scroll position.
+    // ── BUTTERFLY FLOAT ──
+    // The butterfly stays in normal document flow the whole time.
+    // We ONLY ever set transform:translate(dx,dy) rotate(r) — never
+    // touch position/top/left. So it always lifts off from exactly where
+    // it renders, with absolutely zero jump.
+    //
+    // Motion: an outward spiral that starts at (0,0) and winds as you scroll,
+    // layered with organic multi-frequency wobble so it feels alive.
 
     const heroFly = document.getElementById('hero-fly-anchor');
-    const FLY     = 76; // px — matches SVG width/height
 
-    // Organic flight path (irrational-ratio sine sum — never repeats cleanly)
-    function oX(t) {
+    // Organic wobble on top of spiral (irrational ratios = no clean repeat)
+    function wobX(t) {
       return (
-        Math.sin(t * Math.PI * 2.618)        * 0.46 +
-        Math.sin(t * Math.PI * 5.854 + 1.1)  * 0.21 +
-        Math.sin(t * Math.PI * 11.09 + 2.7)  * 0.09 +
-        Math.cos(t * Math.PI * 1.414 + 0.6)  * 0.24
+        Math.sin(t * Math.PI * 4.236 + 0.8) * 30 +
+        Math.sin(t * Math.PI * 9.18  + 2.1) * 12 +
+        Math.cos(t * Math.PI * 2.718 + 1.4) * 20
       );
     }
-    function oY(t) {
+    function wobY(t) {
       return (
-        t * 0.78 +
-        Math.sin(t * Math.PI * 3.236 + 0.3)  * 0.055 +
-        Math.sin(t * Math.PI * 7.472 + 1.8)  * 0.020 +
-        Math.cos(t * Math.PI * 1.618 + 0.9)  * 0.035
+        Math.sin(t * Math.PI * 3.618 + 1.2) * 24 +
+        Math.cos(t * Math.PI * 7.854 + 0.5) * 11 +
+        Math.sin(t * Math.PI * 1.732 + 2.9) * 22
       );
     }
-    function oXd(t) { // derivative for tilt
-      const h = 0.004;
-      return (oX(t + h) - oX(t - h)) / (2 * h);
-    }
 
-    // State
-    let isFixed    = false;
-    let startRect  = null; // butterfly's screen rect at the moment it lifts off
-    let hasLifted  = false;
+    function pos(t) {
+      // t: 0-1 scroll progress
+      // Returns {x, y} offset in px from the butterfly's natural resting spot
+      if (t <= 0) return { x: 0, y: 0 };
 
-    function getHomeRect() {
-      // The butterfly's natural position in the document (before any fixed switch)
-      return heroFly.getBoundingClientRect();
-    }
+      // Ease-in so the first few pixels feel like it's just waking up
+      const ease = t < 0.5
+        ? 2 * t * t
+        : 1 - Math.pow(-2 * t + 2, 2) / 2; // ease-in-out-quad
 
-    function liftOff() {
-      if (hasLifted) return;
-      hasLifted = true;
-      startRect = getHomeRect();
+      // Spiral that grows from r=0 outward, winding ~2.5 full turns
+      const maxR  = 200;
+      const r     = ease * maxR;
+      const theta = ease * Math.PI * 5.0; // 2.5 revolutions
+      const sx    = Math.cos(theta) * r;
+      const sy    = Math.sin(theta) * r * 0.5; // flatten so it fits on screen
 
-      // Switch to fixed at exactly its current screen position — no visual jump
-      heroFly.style.position  = 'fixed';
-      heroFly.style.margin    = '0';
-      heroFly.style.zIndex    = '50';
-      heroFly.style.top       = startRect.top  + 'px';
-      heroFly.style.left      = startRect.left + 'px';
-      // Remove it from flow so the hero layout doesn't collapse weirdly
-      // (we keep its space with a placeholder — the .hero-fly-anchor already has height)
-      heroFly.style.pointerEvents = 'none';
+      // Organic wobble, scaled so it starts near-zero and grows with progress
+      const wScale = ease * 0.85;
+      const wx = wobX(t) * wScale;
+      const wy = wobY(t) * wScale;
+
+      return { x: sx + wx, y: sy + wy };
     }
 
     function updateFly() {
@@ -740,62 +739,23 @@
       const docH    = document.documentElement.scrollHeight - window.innerHeight;
       const t       = docH > 0 ? Math.max(0, Math.min(1, scrollY / docH)) : 0;
 
-      if (scrollY < 1) {
-        // At the very top: put it back in flow
-        if (hasLifted) {
-          heroFly.style.position  = '';
-          heroFly.style.top       = '';
-          heroFly.style.left      = '';
-          heroFly.style.margin    = '';
-          heroFly.style.zIndex    = '';
-          heroFly.style.transform = '';
-          heroFly.style.opacity   = '1';
-          hasLifted = false;
-          startRect = null;
-        }
+      if (t === 0) {
+        heroFly.style.transform = '';
         return;
       }
 
-      // Lift off the first time we scroll
-      if (!hasLifted) liftOff();
+      const cur  = pos(t);
 
-      // Lift-off transition: first 100px of scroll we ease out of the start position
-      const liftT    = Math.min(1, scrollY / 100);
-      const easeLift = liftT * liftT * (3 - 2 * liftT); // smoothstep
+      // Tilt by comparing to a slightly earlier position
+      const prev = pos(Math.max(0, t - 0.012));
+      const tiltR = Math.atan2(cur.y - prev.y, cur.x - prev.x) * (180 / Math.PI);
+      const tilt  = Math.max(-38, Math.min(38, tiltR));
 
-      const vw   = window.innerWidth;
-      const vh   = window.innerHeight;
-      const navH = document.querySelector('.site-nav').offsetHeight;
-
-      // Where the butterfly roams when fully in flight
-      const safeL = 150;
-      const safeR = Math.min(vw - 180, vw * 0.85) - FLY;
-      const topY  = navH + 18;
-      const botY  = vh - FLY - 70;
-
-      const destX = safeL + ((oX(t) + 1) / 2) * (safeR - safeL);
-      const destY = topY  + oY(t) * (botY - topY);
-
-      // Blend from liftoff position → flight position over first 100px scroll
-      const fromX  = startRect ? startRect.left : destX;
-      const fromY  = startRect ? startRect.top  : destY;
-      const flyX   = fromX + (destX - fromX) * easeLift;
-      const flyY   = fromY + (destY - fromY) * easeLift;
-
-      const tilt   = Math.max(-28, Math.min(28, oXd(t) * 90));
-
-      heroFly.style.left      = flyX + 'px';
-      heroFly.style.top       = flyY + 'px';
-      heroFly.style.transform = `rotate(${tilt}deg)`;
-      heroFly.style.opacity   = '1';
+      heroFly.style.transform = `translate(${cur.x}px, ${cur.y}px) rotate(${tilt}deg)`;
     }
 
     window.addEventListener('scroll', updateFly, { passive: true });
-    window.addEventListener('resize', () => {
-      // Re-measure start position if resized before lifting off
-      if (!hasLifted) startRect = null;
-      updateFly();
-    }, { passive: true });
+    window.addEventListener('resize', updateFly, { passive: true });
     updateFly();
   </script>
 </body>
