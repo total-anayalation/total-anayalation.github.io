@@ -186,14 +186,12 @@
       transform: scale(1.5);
     }
 
-    /* ── SCROLL-DRIVEN BUTTERFLY ── */
-    #scroll-fly {
-      position: fixed;
-      pointer-events: none;
-      z-index: 50;
+    /* ── BUTTERFLY LIFT-OFF ── */
+    /* JS switches hero-fly-anchor to position:fixed on scroll.
+       transform-origin ensures rotation pivots from center. */
+    #hero-fly-anchor {
       transform-origin: center center;
-      transition: opacity 0.3s;
-      /* js will set top/left/transform */
+      will-change: transform, top, left;
     }
 
     /* ── SECTIONS ── */
@@ -405,15 +403,7 @@
     .d3 { transition-delay: 0.30s; }
     .d4 { transition-delay: 0.42s; }
 
-    /* scroll butterfly wing flutter */
-    @keyframes wingbeat {
-      0%,100% { transform: scaleY(1)   rotateY(0deg); }
-      50%      { transform: scaleY(0.6) rotateY(20deg); }
-    }
-    #scroll-fly svg {
-      animation: wingbeat 0.3s ease-in-out infinite alternate;
-      transform-origin: center center;
-    }
+
   </style>
 </head>
 <body>
@@ -422,21 +412,7 @@
   <div class="blob blob-2"></div>
   <div class="blob blob-3"></div>
 
-  <!-- ── SCROLL-DRIVEN BUTTERFLY (same as hero, lifts off on scroll) ── -->
-  <div id="scroll-fly" aria-hidden="true" style="position:fixed;pointer-events:none;z-index:50;opacity:0;will-change:transform,opacity;">
-    <svg width="76" height="76" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="22" cy="22" rx="18" ry="13" fill="#6b3fa0" opacity="0.9" transform="rotate(-30 22 22)"/>
-      <ellipse cx="42" cy="22" rx="18" ry="13" fill="#8b5cc4" opacity="0.9" transform="rotate(30 42 22)"/>
-      <ellipse cx="20" cy="42" rx="13" ry="10" fill="#a67fd4" opacity="0.85" transform="rotate(20 20 42)"/>
-      <ellipse cx="44" cy="42" rx="13" ry="10" fill="#c4a0e8" opacity="0.85" transform="rotate(-20 44 42)"/>
-      <ellipse cx="22" cy="22" rx="9"  ry="6"  fill="#9b60d0" opacity="0.35" transform="rotate(-30 22 22)"/>
-      <ellipse cx="42" cy="22" rx="9"  ry="6"  fill="#b080e0" opacity="0.35" transform="rotate(30 42 22)"/>
-      <ellipse cx="32" cy="32" rx="3"  ry="12" fill="#2e1050"/>
-      <circle  cx="32" cy="20" r="3"   fill="#2e1050"/>
-      <line x1="32" y1="17" x2="26" y2="10" stroke="#2e1050" stroke-width="1.6" stroke-linecap="round"/>
-      <line x1="32" y1="17" x2="38" y2="10" stroke="#2e1050" stroke-width="1.6" stroke-linecap="round"/>
-    </svg>
-  </div>
+
 
   <!-- ── LEFT SIDE ART ── -->
   <div class="side-art left" aria-hidden="true">
@@ -548,7 +524,7 @@
   <!-- ══ HERO ══ -->
   <section class="sec" id="s-hero">
     <div class="inner" style="text-align:center;">
-      <div class="hero-fly-anchor" id="hero-fly-anchor" style="transition:opacity 0.3s;">
+      <div class="hero-fly-anchor" id="hero-fly-anchor">
         <svg width="76" height="76" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
           <ellipse cx="22" cy="22" rx="18" ry="13" fill="#6b3fa0" opacity="0.9" transform="rotate(-30 22 22)"/>
           <ellipse cx="42" cy="22" rx="18" ry="13" fill="#8b5cc4" opacity="0.9" transform="rotate(30 42 22)"/>
@@ -702,85 +678,125 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
 
-    // ── SCROLL-DRIVEN BUTTERFLY ──
-    const scrollFly  = document.getElementById('scroll-fly');
-    const heroAnchor = document.getElementById('hero-fly-anchor');
-    const FLY_SIZE   = 76;
+    // ── BUTTERFLY LIFT-OFF ──
+    // The hero butterfly itself lifts off its spot and flies around the page.
+    // Technique: measure its natural position, then on first scroll switch it
+    // to position:fixed at those exact screen coordinates so there's zero jump,
+    // then animate from there using the scroll position.
 
-    // Organic flight path: sum of several sine waves at irrational frequency ratios.
-    // This produces a path that never exactly repeats and looks like real wandering.
-    // Each axis gets two waves so the trajectory has both slow drift and quick jitter.
-    function organicX(t) {
-      // t goes 0→1 over the full scroll range
+    const heroFly = document.getElementById('hero-fly-anchor');
+    const FLY     = 76; // px — matches SVG width/height
+
+    // Organic flight path (irrational-ratio sine sum — never repeats cleanly)
+    function oX(t) {
       return (
-        Math.sin(t * Math.PI * 2.618)          * 0.45  +  // golden-ratio freq, wide swing
-        Math.sin(t * Math.PI * 5.854 + 1.1)    * 0.22  +  // ~2.236× base, mid wobble
-        Math.sin(t * Math.PI * 11.09  + 2.7)   * 0.09  +  // high freq, small tremor
-        Math.cos(t * Math.PI * 1.414  + 0.6)   * 0.24     // √2 freq, slow counter-drift
+        Math.sin(t * Math.PI * 2.618)        * 0.46 +
+        Math.sin(t * Math.PI * 5.854 + 1.1)  * 0.21 +
+        Math.sin(t * Math.PI * 11.09 + 2.7)  * 0.09 +
+        Math.cos(t * Math.PI * 1.414 + 0.6)  * 0.24
       );
     }
-    function organicY(t) {
-      // Mostly moves downward (0→1) but adds a little bounce and hesitation
+    function oY(t) {
       return (
-        t * 0.78 +                                          // primary downward travel
-        Math.sin(t * Math.PI * 3.236  + 0.3)   * 0.055 +  // slight up-down bobbing
-        Math.sin(t * Math.PI * 7.472  + 1.8)   * 0.020 +  // faster micro-flutter
-        Math.cos(t * Math.PI * 1.618  + 0.9)   * 0.035    // slow rolling rise/dip
+        t * 0.78 +
+        Math.sin(t * Math.PI * 3.236 + 0.3)  * 0.055 +
+        Math.sin(t * Math.PI * 7.472 + 1.8)  * 0.020 +
+        Math.cos(t * Math.PI * 1.618 + 0.9)  * 0.035
       );
     }
-
-    // Pre-compute derivative of organicX to get heading angle for tilt
-    function organicXprime(t) {
+    function oXd(t) { // derivative for tilt
       const h = 0.004;
-      return (organicX(t + h) - organicX(t - h)) / (2 * h);
+      return (oX(t + h) - oX(t - h)) / (2 * h);
     }
 
-    function updateScrollFly() {
+    // State
+    let isFixed    = false;
+    let startRect  = null; // butterfly's screen rect at the moment it lifts off
+    let hasLifted  = false;
+
+    function getHomeRect() {
+      // The butterfly's natural position in the document (before any fixed switch)
+      return heroFly.getBoundingClientRect();
+    }
+
+    function liftOff() {
+      if (hasLifted) return;
+      hasLifted = true;
+      startRect = getHomeRect();
+
+      // Switch to fixed at exactly its current screen position — no visual jump
+      heroFly.style.position  = 'fixed';
+      heroFly.style.margin    = '0';
+      heroFly.style.zIndex    = '50';
+      heroFly.style.top       = startRect.top  + 'px';
+      heroFly.style.left      = startRect.left + 'px';
+      // Remove it from flow so the hero layout doesn't collapse weirdly
+      // (we keep its space with a placeholder — the .hero-fly-anchor already has height)
+      heroFly.style.pointerEvents = 'none';
+    }
+
+    function updateFly() {
       const scrollY = window.scrollY;
       const docH    = document.documentElement.scrollHeight - window.innerHeight;
-      const raw     = docH > 0 ? scrollY / docH : 0;
-      const t       = Math.max(0, Math.min(1, raw));
+      const t       = docH > 0 ? Math.max(0, Math.min(1, scrollY / docH)) : 0;
 
-      // ── Fade hero static butterfly out as scroll butterfly takes over ──
-      if (scrollY < 40) {
-        scrollFly.style.opacity = '0';
-        heroAnchor.style.opacity = '1';
+      if (scrollY < 1) {
+        // At the very top: put it back in flow
+        if (hasLifted) {
+          heroFly.style.position  = '';
+          heroFly.style.top       = '';
+          heroFly.style.left      = '';
+          heroFly.style.margin    = '';
+          heroFly.style.zIndex    = '';
+          heroFly.style.transform = '';
+          heroFly.style.opacity   = '1';
+          hasLifted = false;
+          startRect = null;
+        }
         return;
       }
-      // Blend: hero fades out 40→160px scroll; scroll-fly fades in simultaneously
-      const liftProg  = Math.min(1, (scrollY - 40) / 120);
-      heroAnchor.style.opacity = String(1 - liftProg);
-      scrollFly.style.opacity  = String(liftProg);
 
-      // ── Compute position ──
+      // Lift off the first time we scroll
+      if (!hasLifted) liftOff();
+
+      // Lift-off transition: first 100px of scroll we ease out of the start position
+      const liftT    = Math.min(1, scrollY / 100);
+      const easeLift = liftT * liftT * (3 - 2 * liftT); // smoothstep
+
       const vw   = window.innerWidth;
       const vh   = window.innerHeight;
       const navH = document.querySelector('.site-nav').offsetHeight;
 
-      // Horizontal: organic function mapped to a band in the middle of the viewport
-      // Avoid the side art columns (130px) and dot nav (50px right)
-      const safeLeft  = 150;
-      const safeRight = Math.min(vw - 180, vw * 0.85);
-      const bandW     = safeRight - safeLeft - FLY_SIZE;
-      const flyX      = safeLeft + ((organicX(t) + 1) / 2) * bandW;
-
-      // Vertical: organic function mapped from just below nav to just above theme btn
+      // Where the butterfly roams when fully in flight
+      const safeL = 150;
+      const safeR = Math.min(vw - 180, vw * 0.85) - FLY;
       const topY  = navH + 18;
-      const botY  = vh - FLY_SIZE - 70;
-      const flyY  = topY + organicY(t) * (botY - topY);
+      const botY  = vh - FLY - 70;
 
-      // Tilt: direction of horizontal motion
-      const dx       = organicXprime(t);
-      const tiltDeg  = Math.max(-28, Math.min(28, dx * 90));
+      const destX = safeL + ((oX(t) + 1) / 2) * (safeR - safeL);
+      const destY = topY  + oY(t) * (botY - topY);
 
-      scrollFly.style.left      = flyX + 'px';
-      scrollFly.style.top       = flyY + 'px';
-      scrollFly.style.transform = `rotate(${tiltDeg}deg)`;
+      // Blend from liftoff position → flight position over first 100px scroll
+      const fromX  = startRect ? startRect.left : destX;
+      const fromY  = startRect ? startRect.top  : destY;
+      const flyX   = fromX + (destX - fromX) * easeLift;
+      const flyY   = fromY + (destY - fromY) * easeLift;
+
+      const tilt   = Math.max(-28, Math.min(28, oXd(t) * 90));
+
+      heroFly.style.left      = flyX + 'px';
+      heroFly.style.top       = flyY + 'px';
+      heroFly.style.transform = `rotate(${tilt}deg)`;
+      heroFly.style.opacity   = '1';
     }
 
-    window.addEventListener('scroll', updateScrollFly, { passive: true });
-    window.addEventListener('resize', updateScrollFly, { passive: true });
-    updateScrollFly();
+    window.addEventListener('scroll', updateFly, { passive: true });
+    window.addEventListener('resize', () => {
+      // Re-measure start position if resized before lifting off
+      if (!hasLifted) startRect = null;
+      updateFly();
+    }, { passive: true });
+    updateFly();
   </script>
 </body>
 </html>
