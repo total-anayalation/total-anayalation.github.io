@@ -12,9 +12,8 @@
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
 
-  <button class="theme-btn" onclick="toggleTheme()">
+  <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme">
     <span class="icon-sun">☀️</span><span class="icon-moon">🌙</span>
-    <span id="tlabel">light</span>
   </button>
 
   <nav>
@@ -91,10 +90,9 @@
     function toggleTheme() {
       const d = document.documentElement.getAttribute('data-theme') === 'dark';
       document.documentElement.setAttribute('data-theme', d ? 'light' : 'dark');
-      document.getElementById('tlabel').textContent = d ? 'light' : 'dark';
       localStorage.setItem('anaya-theme', d ? 'light' : 'dark');
     }
-    (function(){ const t = localStorage.getItem('anaya-theme'); if(t){ document.documentElement.setAttribute('data-theme',t); const el=document.getElementById('tlabel'); if(el) el.textContent=t; } })();
+    (function(){ const t = localStorage.getItem('anaya-theme'); if(t) document.documentElement.setAttribute('data-theme',t); })();
 
     const rvObs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('on'); }), {threshold:0.1});
     document.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
