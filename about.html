@@ -1,18 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About — Anaya</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='22' cy='22' rx='18' ry='13' fill='%236b3fa0' opacity='0.9' transform='rotate(-30 22 22)'/%3E%3Cellipse cx='42' cy='22' rx='18' ry='13' fill='%238b5cc4' opacity='0.9' transform='rotate(30 42 22)'/%3E%3Cellipse cx='20' cy='42' rx='13' ry='10' fill='%23a67fd4' opacity='0.85' transform='rotate(20 20 42)'/%3E%3Cellipse cx='44' cy='42' rx='13' ry='10' fill='%23c4a0e8' opacity='0.85' transform='rotate(-20 44 42)'/%3E%3Cellipse cx='32' cy='32' rx='3' ry='12' fill='%233b1f5e'/%3E%3Ccircle cx='32' cy='20' r='3' fill='%233b1f5e'/%3E%3C/svg%3E">
 </head>
 <body>
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
 
+  <button class="theme-btn" onclick="toggleTheme()">
+    <span class="icon-sun">☀️</span><span class="icon-moon">🌙</span>
+    <span id="tlabel">light</span>
+  </button>
+
   <nav>
-    <a href="index.html" class="nav-home">Your <em>Name</em></a>
+    <a href="index.html" class="nav-home">
+      <svg width="20" height="20" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="22" cy="22" rx="17" ry="12" fill="#6b3fa0" opacity="0.9" transform="rotate(-30 22 22)"/>
+        <ellipse cx="42" cy="22" rx="17" ry="12" fill="#9060c8" opacity="0.9" transform="rotate(30 42 22)"/>
+        <ellipse cx="20" cy="42" rx="12" ry="9"  fill="#a880d8" opacity="0.85" transform="rotate(20 20 42)"/>
+        <ellipse cx="44" cy="42" rx="12" ry="9"  fill="#c8a0ec" opacity="0.85" transform="rotate(-20 44 42)"/>
+        <ellipse cx="32" cy="32" rx="2.5" ry="11" fill="#2e1050"/>
+        <circle  cx="32" cy="21" r="2.5" fill="#2e1050"/>
+      </svg>
+      A<em>naya</em>
+    </a>
     <div class="nav-links">
       <a href="about.html" class="active">About</a>
       <a href="projects.html">Projects</a>
@@ -28,26 +44,19 @@
     <div class="page-header">
       <div class="page-kicker">🪐 get to know me</div>
       <h1 class="page-title">About <em>Me</em></h1>
+      <div class="sline"></div>
       <p class="page-sub">CS meets data science meets education policy — the through-line is using rigorous tools to solve problems that actually matter.</p>
     </div>
 
     <div class="prose">
-      <p>
-        Hi! I'm a student at the University of Wisconsin–Madison studying Computer Science, Data Science, and Education Policy — yes, all three, and yes, they connect more than you'd think. I'm fascinated by how technology shapes institutions, and how institutions shape who gets access to technology.
-      </p>
-      <p>
-        I'm an active member of UW's AI Safety organization, where I spend a lot of time thinking about alignment, interpretability, and what it actually means to build AI systems that are robust and beneficial. I believe AI safety is one of the most important problems of our generation — and I think people with policy and social science backgrounds need to be in that conversation.
-      </p>
+      <p>Hi! I'm Anaya, a sophomore at the University of Wisconsin–Madison studying Computer Science, Data Science, and Education Policy — yes, all three, and yes, they connect more than you'd think. I'm fascinated by how technology shapes institutions, and how institutions shape who gets access to technology.</p>
+      <p>I'm an active member of UW's AI Safety organization, where I spend a lot of time thinking about alignment, interpretability, and what it actually means to build AI systems that are robust and beneficial. I believe AI safety is one of the most important problems of our generation — and I think people with policy and social science backgrounds need to be in that conversation.</p>
 
       <h2>The intersection</h2>
-      <p>
-        My academic interests live at the crossroads of technical rigor and human impact. In CS, I love machine learning and systems. In data science, I gravitate toward causal inference and fairness. In education policy, I care about how evidence actually (or doesn't) make it into decisions. Put those together and you get someone who really enjoys a good messy problem.
-      </p>
+      <p>My academic interests live at the crossroads of technical rigor and human impact. In CS, I love machine learning and systems. In data science, I gravitate toward causal inference and fairness. In education policy, I care about how evidence actually (or doesn't) make it into decisions. Put those together and you get someone who really enjoys a good messy problem.</p>
 
       <h2>Outside class</h2>
-      <p>
-        When I'm not studying or at an AI safety reading group, you might find me at a coffee shop with a book, exploring Madison's lakes, or going way too deep on some random Wikipedia rabbit hole. I believe in warm conversations, intellectual honesty, and the power of a good question.
-      </p>
+      <p>When I'm not studying or at an AI safety reading group, you might find me at a coffee shop with a book, exploring Madison's lakes, or going way too deep on some random Wikipedia rabbit hole. I believe in warm conversations, intellectual honesty, and the power of a good question.</p>
     </div>
 
     <hr class="deco">
@@ -58,7 +67,7 @@
           <span class="item-icon">🎓</span>
           <div>
             <div class="item-title">University of Wisconsin–Madison</div>
-            <div class="item-meta">Expected graduation · 20XX</div>
+            <div class="item-meta">Sophomore · Spring 2026</div>
             <div class="item-desc">B.S. Computer Science · B.S. Data Science · Certificate in Education Policy</div>
           </div>
         </div>
@@ -68,7 +77,7 @@
           <span class="item-icon">🤖</span>
           <div>
             <div class="item-title">UW AI Safety Organization</div>
-            <div class="item-meta">Member · ongoing</div>
+            <div class="item-meta">Member · Ongoing</div>
             <div class="item-desc">Reading groups, research discussions, and building a community of people thinking carefully about advanced AI.</div>
           </div>
         </div>
@@ -76,6 +85,19 @@
     </div>
   </div>
 
-  <footer>uw–madison · made with care</footer>
+  <footer>anaya · uw–madison · spring 2026 · <a href="contact.html">say hi</a></footer>
+
+  <script>
+    function toggleTheme() {
+      const d = document.documentElement.getAttribute('data-theme') === 'dark';
+      document.documentElement.setAttribute('data-theme', d ? 'light' : 'dark');
+      document.getElementById('tlabel').textContent = d ? 'light' : 'dark';
+      localStorage.setItem('anaya-theme', d ? 'light' : 'dark');
+    }
+    (function(){ const t = localStorage.getItem('anaya-theme'); if(t){ document.documentElement.setAttribute('data-theme',t); const el=document.getElementById('tlabel'); if(el) el.textContent=t; } })();
+
+    const rvObs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('on'); }), {threshold:0.1});
+    document.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
+  </script>
 </body>
 </html>

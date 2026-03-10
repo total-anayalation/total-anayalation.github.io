@@ -1,18 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Projects — Anaya</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='22' cy='22' rx='18' ry='13' fill='%236b3fa0' opacity='0.9' transform='rotate(-30 22 22)'/%3E%3Cellipse cx='42' cy='22' rx='18' ry='13' fill='%238b5cc4' opacity='0.9' transform='rotate(30 42 22)'/%3E%3Cellipse cx='20' cy='42' rx='13' ry='10' fill='%23a67fd4' opacity='0.85' transform='rotate(20 20 42)'/%3E%3Cellipse cx='44' cy='42' rx='13' ry='10' fill='%23c4a0e8' opacity='0.85' transform='rotate(-20 44 42)'/%3E%3Cellipse cx='32' cy='32' rx='3' ry='12' fill='%233b1f5e'/%3E%3Ccircle cx='32' cy='20' r='3' fill='%233b1f5e'/%3E%3C/svg%3E">
+  <style>
+    .section-head { font-family:'Lora',serif; font-size:1.1rem; font-weight:600; color:var(--plum); margin:2.5rem 0 1rem; display:flex; align-items:center; gap:0.5rem; }
+  </style>
 </head>
 <body>
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
-
+  <div class="blob blob-1"></div><div class="blob blob-2"></div>
+  <button class="theme-btn" onclick="toggleTheme()">
+    <span class="icon-sun">☀️</span><span class="icon-moon">🌙</span>
+    <span id="tlabel">light</span>
+  </button>
   <nav>
-    <a href="index.html" class="nav-home">Your <em>Name</em></a>
+    <a href="index.html" class="nav-home"><svg width="20" height="20" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="22" cy="22" rx="17" ry="12" fill="#6b3fa0" opacity="0.9" transform="rotate(-30 22 22)"/>
+        <ellipse cx="42" cy="22" rx="17" ry="12" fill="#9060c8" opacity="0.9" transform="rotate(30 42 22)"/>
+        <ellipse cx="20" cy="42" rx="12" ry="9"  fill="#a880d8" opacity="0.85" transform="rotate(20 20 42)"/>
+        <ellipse cx="44" cy="42" rx="12" ry="9"  fill="#c8a0ec" opacity="0.85" transform="rotate(-20 44 42)"/>
+        <ellipse cx="32" cy="32" rx="2.5" ry="11" fill="#2e1050"/>
+        <circle  cx="32" cy="21" r="2.5" fill="#2e1050"/>
+      </svg>A<em>naya</em></a>
     <div class="nav-links">
       <a href="about.html">About</a>
       <a href="projects.html" class="active">Projects</a>
@@ -23,85 +36,63 @@
       <a href="contact.html">Contact</a>
     </div>
   </nav>
-
   <div class="page">
     <div class="page-header">
       <div class="page-kicker">🔬 things i've built</div>
       <h1 class="page-title">My <em>Projects</em></h1>
+      <div class="sline"></div>
       <p class="page-sub">A mix of ML experiments, policy analyses, and tools I built because I wanted them to exist.</p>
     </div>
-
     <div class="item-list">
-
-      <div class="item">
-        <div class="item-top">
-          <span class="item-icon">🧠</span>
-          <div>
-            <div class="item-meta">AI Safety · Research</div>
-            <div class="item-title">Project Title Here</div>
-            <div class="item-desc">Brief description of what this project does, what problem it solves, and what you learned. 2–3 sentences is plenty.</div>
-            <div class="tag-row">
-              <span class="tag">Python</span>
-              <span class="tag">ML</span>
-              <span class="tag">Interpretability</span>
-            </div>
-            <a href="#" class="item-link">View on GitHub →</a>
-          </div>
-        </div>
+      <div class="item rv">
+        <div class="item-top"><span class="item-icon">🧠</span><div>
+          <div class="item-meta">AI Safety · Research</div>
+          <div class="item-title">Project Title Here</div>
+          <div class="item-desc">Brief description of what this project does, what problem it solves, and what you learned. 2–3 sentences is plenty.</div>
+          <div class="tag-row"><span class="tag">Python</span><span class="tag">ML</span><span class="tag">Interpretability</span></div>
+          <a href="#" class="item-link">View on GitHub →</a>
+        </div></div>
       </div>
-
-      <div class="item">
-        <div class="item-top">
-          <span class="item-icon">📊</span>
-          <div>
-            <div class="item-meta">Data Science · Education</div>
-            <div class="item-title">Another Project</div>
-            <div class="item-desc">What did you analyze, what data did you use, and what did you find? This is a great place to describe a data science or policy project.</div>
-            <div class="tag-row">
-              <span class="tag">R</span>
-              <span class="tag">Causal Inference</span>
-              <span class="tag">Education Policy</span>
-            </div>
-            <a href="#" class="item-link">Read the writeup →</a>
-          </div>
-        </div>
+      <div class="item rv d1">
+        <div class="item-top"><span class="item-icon">📊</span><div>
+          <div class="item-meta">Data Science · Education</div>
+          <div class="item-title">Another Project</div>
+          <div class="item-desc">What did you analyze, what data did you use, and what did you find? This is a great place to describe a data science or policy project.</div>
+          <div class="tag-row"><span class="tag">R</span><span class="tag">Causal Inference</span><span class="tag">Education Policy</span></div>
+          <a href="#" class="item-link">Read the writeup →</a>
+        </div></div>
       </div>
-
-      <div class="item">
-        <div class="item-top">
-          <span class="item-icon">🛠️</span>
-          <div>
-            <div class="item-meta">Software · Tool</div>
-            <div class="item-title">Something I Built</div>
-            <div class="item-desc">A tool, app, or script you made because you needed it. What does it do and why did you make it?</div>
-            <div class="tag-row">
-              <span class="tag">JavaScript</span>
-              <span class="tag">API</span>
-            </div>
-            <a href="#" class="item-link">Try it →</a>
-          </div>
-        </div>
+      <div class="item rv d2">
+        <div class="item-top"><span class="item-icon">🛠️</span><div>
+          <div class="item-meta">Software · Tool</div>
+          <div class="item-title">Something I Built</div>
+          <div class="item-desc">A tool, app, or script you made because you needed it. What does it do and why did you make it?</div>
+          <div class="tag-row"><span class="tag">JavaScript</span><span class="tag">API</span></div>
+          <a href="#" class="item-link">Try it →</a>
+        </div></div>
       </div>
-
-      <div class="item">
-        <div class="item-top">
-          <span class="item-icon">📝</span>
-          <div>
-            <div class="item-meta">Policy · Writing</div>
-            <div class="item-title">Policy Memo / Analysis</div>
-            <div class="item-desc">A policy brief, memo, or research paper. Who was the audience, what was the question, what did you recommend?</div>
-            <div class="tag-row">
-              <span class="tag">Education Policy</span>
-              <span class="tag">Research</span>
-            </div>
-            <a href="#" class="item-link">Read the memo →</a>
-          </div>
-        </div>
+      <div class="item rv d3">
+        <div class="item-top"><span class="item-icon">📝</span><div>
+          <div class="item-meta">Policy · Writing</div>
+          <div class="item-title">Policy Memo / Analysis</div>
+          <div class="item-desc">A policy brief, memo, or research paper. Who was the audience, what was the question, what did you recommend?</div>
+          <div class="tag-row"><span class="tag">Education Policy</span><span class="tag">Research</span></div>
+          <a href="#" class="item-link">Read the memo →</a>
+        </div></div>
       </div>
-
     </div>
   </div>
-
-  <footer>uw–madison · made with care</footer>
+  <footer>anaya · uw–madison · spring 2026 · <a href="contact.html">say hi</a></footer>
+  <script>
+    function toggleTheme() {
+      const d = document.documentElement.getAttribute('data-theme') === 'dark';
+      document.documentElement.setAttribute('data-theme', d ? 'light' : 'dark');
+      document.getElementById('tlabel').textContent = d ? 'light' : 'dark';
+      localStorage.setItem('anaya-theme', d ? 'light' : 'dark');
+    }
+    (function(){ const t = localStorage.getItem('anaya-theme'); if(t){ document.documentElement.setAttribute('data-theme',t); const el=document.getElementById('tlabel'); if(el) el.textContent=t; } })();
+    const rvObs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('on'); }), {threshold:0.1});
+    document.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
+  </script>
 </body>
 </html>
