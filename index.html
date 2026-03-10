@@ -109,8 +109,10 @@
       color: var(--plum);
       text-decoration: none;
       letter-spacing: -0.01em;
-      display: flex; align-items: center; gap: 0.45rem;
+      display: flex; align-items: center; gap: 0.5rem;
+      white-space: nowrap;
     }
+    .nav-logo .logo-text { display: inline; }
     .nav-logo em { font-style: italic; color: var(--violet); }
 
     .nav-links {
@@ -403,13 +405,15 @@
     .d3 { transition-delay: 0.30s; }
     .d4 { transition-delay: 0.42s; }
 
-    /* wing flutter for scroll butterfly */
-    @keyframes flutter {
-      0%,100% { transform: scaleX(1); }
-      50%      { transform: scaleX(0.7); }
+    /* scroll butterfly wing flutter */
+    @keyframes wingbeat {
+      0%,100% { transform: scaleY(1)   rotateY(0deg); }
+      50%      { transform: scaleY(0.6) rotateY(20deg); }
     }
-    .fly-wing-l { animation: flutter 0.35s ease-in-out infinite alternate; transform-origin: right center; }
-    .fly-wing-r { animation: flutter 0.35s ease-in-out infinite alternate-reverse; transform-origin: left center; }
+    #scroll-fly svg {
+      animation: wingbeat 0.3s ease-in-out infinite alternate;
+      transform-origin: center center;
+    }
   </style>
 </head>
 <body>
@@ -418,21 +422,17 @@
   <div class="blob blob-2"></div>
   <div class="blob blob-3"></div>
 
-  <!-- ── SCROLL-DRIVEN BUTTERFLY ── -->
-  <div id="scroll-fly" aria-hidden="true">
-    <svg width="56" height="56" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-      <g class="fly-wing-l">
-        <ellipse cx="22" cy="22" rx="18" ry="13" fill="#6b3fa0" opacity="0.9" transform="rotate(-30 22 22)"/>
-        <ellipse cx="20" cy="42" rx="13" ry="10" fill="#a67fd4" opacity="0.85" transform="rotate(20 20 42)"/>
-        <ellipse cx="22" cy="22" rx="9"  ry="6"  fill="#9b60d0" opacity="0.35" transform="rotate(-30 22 22)"/>
-      </g>
-      <g class="fly-wing-r">
-        <ellipse cx="42" cy="22" rx="18" ry="13" fill="#8b5cc4" opacity="0.9" transform="rotate(30 42 22)"/>
-        <ellipse cx="44" cy="42" rx="13" ry="10" fill="#c4a0e8" opacity="0.85" transform="rotate(-20 44 42)"/>
-        <ellipse cx="42" cy="22" rx="9"  ry="6"  fill="#b080e0" opacity="0.35" transform="rotate(30 42 22)"/>
-      </g>
-      <ellipse cx="32" cy="32" rx="3" ry="12" fill="#2e1050"/>
-      <circle  cx="32" cy="20" r="3" fill="#2e1050"/>
+  <!-- ── SCROLL-DRIVEN BUTTERFLY (same as hero, lifts off on scroll) ── -->
+  <div id="scroll-fly" aria-hidden="true" style="position:fixed;pointer-events:none;z-index:50;opacity:0;will-change:transform,opacity;">
+    <svg width="76" height="76" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="22" cy="22" rx="18" ry="13" fill="#6b3fa0" opacity="0.9" transform="rotate(-30 22 22)"/>
+      <ellipse cx="42" cy="22" rx="18" ry="13" fill="#8b5cc4" opacity="0.9" transform="rotate(30 42 22)"/>
+      <ellipse cx="20" cy="42" rx="13" ry="10" fill="#a67fd4" opacity="0.85" transform="rotate(20 20 42)"/>
+      <ellipse cx="44" cy="42" rx="13" ry="10" fill="#c4a0e8" opacity="0.85" transform="rotate(-20 44 42)"/>
+      <ellipse cx="22" cy="22" rx="9"  ry="6"  fill="#9b60d0" opacity="0.35" transform="rotate(-30 22 22)"/>
+      <ellipse cx="42" cy="22" rx="9"  ry="6"  fill="#b080e0" opacity="0.35" transform="rotate(30 42 22)"/>
+      <ellipse cx="32" cy="32" rx="3"  ry="12" fill="#2e1050"/>
+      <circle  cx="32" cy="20" r="3"   fill="#2e1050"/>
       <line x1="32" y1="17" x2="26" y2="10" stroke="#2e1050" stroke-width="1.6" stroke-linecap="round"/>
       <line x1="32" y1="17" x2="38" y2="10" stroke="#2e1050" stroke-width="1.6" stroke-linecap="round"/>
     </svg>
@@ -516,7 +516,7 @@
         <ellipse cx="32" cy="32" rx="2.5" ry="11" fill="#2e1050"/>
         <circle  cx="32" cy="21" r="2.5" fill="#2e1050"/>
       </svg>
-      A<em>naya</em>
+      <span class="logo-text">An<em>aya</em></span>
     </a>
     <div class="nav-links">
       <a href="about.html">About</a>
@@ -548,7 +548,7 @@
   <!-- ══ HERO ══ -->
   <section class="sec" id="s-hero">
     <div class="inner" style="text-align:center;">
-      <div class="hero-fly-anchor" id="hero-fly-anchor">
+      <div class="hero-fly-anchor" id="hero-fly-anchor" style="transition:opacity 0.3s;">
         <svg width="76" height="76" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
           <ellipse cx="22" cy="22" rx="18" ry="13" fill="#6b3fa0" opacity="0.9" transform="rotate(-30 22 22)"/>
           <ellipse cx="42" cy="22" rx="18" ry="13" fill="#8b5cc4" opacity="0.9" transform="rotate(30 42 22)"/>
@@ -703,49 +703,83 @@
     document.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
 
     // ── SCROLL-DRIVEN BUTTERFLY ──
-    const scrollFly    = document.getElementById('scroll-fly');
-    const heroAnchor   = document.getElementById('hero-fly-anchor');
+    const scrollFly  = document.getElementById('scroll-fly');
+    const heroAnchor = document.getElementById('hero-fly-anchor');
+    const FLY_SIZE   = 76;
 
-    // Wavy path parameters — butterfly drifts side to side as it travels down
-    const FLY_SIZE = 56;  // px, matches SVG width/height
+    // Organic flight path: sum of several sine waves at irrational frequency ratios.
+    // This produces a path that never exactly repeats and looks like real wandering.
+    // Each axis gets two waves so the trajectory has both slow drift and quick jitter.
+    function organicX(t) {
+      // t goes 0→1 over the full scroll range
+      return (
+        Math.sin(t * Math.PI * 2.618)          * 0.45  +  // golden-ratio freq, wide swing
+        Math.sin(t * Math.PI * 5.854 + 1.1)    * 0.22  +  // ~2.236× base, mid wobble
+        Math.sin(t * Math.PI * 11.09  + 2.7)   * 0.09  +  // high freq, small tremor
+        Math.cos(t * Math.PI * 1.414  + 0.6)   * 0.24     // √2 freq, slow counter-drift
+      );
+    }
+    function organicY(t) {
+      // Mostly moves downward (0→1) but adds a little bounce and hesitation
+      return (
+        t * 0.78 +                                          // primary downward travel
+        Math.sin(t * Math.PI * 3.236  + 0.3)   * 0.055 +  // slight up-down bobbing
+        Math.sin(t * Math.PI * 7.472  + 1.8)   * 0.020 +  // faster micro-flutter
+        Math.cos(t * Math.PI * 1.618  + 0.9)   * 0.035    // slow rolling rise/dip
+      );
+    }
+
+    // Pre-compute derivative of organicX to get heading angle for tilt
+    function organicXprime(t) {
+      const h = 0.004;
+      return (organicX(t + h) - organicX(t - h)) / (2 * h);
+    }
 
     function updateScrollFly() {
-      const scrollY    = window.scrollY;
-      const docH       = document.documentElement.scrollHeight - window.innerHeight;
-      const progress   = docH > 0 ? Math.min(scrollY / docH, 1) : 0;
+      const scrollY = window.scrollY;
+      const docH    = document.documentElement.scrollHeight - window.innerHeight;
+      const raw     = docH > 0 ? scrollY / docH : 0;
+      const t       = Math.max(0, Math.min(1, raw));
 
-      // Hide on hero (before any scroll)
-      if (scrollY < 60) {
+      // ── Fade hero static butterfly out as scroll butterfly takes over ──
+      if (scrollY < 40) {
         scrollFly.style.opacity = '0';
+        heroAnchor.style.opacity = '1';
         return;
       }
-      scrollFly.style.opacity = '1';
+      // Blend: hero fades out 40→160px scroll; scroll-fly fades in simultaneously
+      const liftProg  = Math.min(1, (scrollY - 40) / 120);
+      heroAnchor.style.opacity = String(1 - liftProg);
+      scrollFly.style.opacity  = String(liftProg);
 
-      // Vertical: travel from just below nav to near footer
-      const navH   = document.querySelector('.site-nav').offsetHeight;
-      const startY = navH + 20;
-      const endY   = window.innerHeight - FLY_SIZE - 80; // stay above theme btn
-      const flyY   = startY + (endY - startY) * progress;
+      // ── Compute position ──
+      const vw   = window.innerWidth;
+      const vh   = window.innerHeight;
+      const navH = document.querySelector('.site-nav').offsetHeight;
 
-      // Horizontal: sinusoidal drift across the content width
-      // Centre on the viewport; amplitude swings ~160px each side
-      const vw        = window.innerWidth;
-      const amplitude = Math.min(160, vw * 0.18);
-      const waves     = 3.5;  // how many full side-to-side swings across the full scroll
-      const angle     = progress * waves * Math.PI * 2;
-      const centreX   = vw / 2 - FLY_SIZE / 2;
-      const flyX      = centreX + Math.sin(angle) * amplitude;
+      // Horizontal: organic function mapped to a band in the middle of the viewport
+      // Avoid the side art columns (130px) and dot nav (50px right)
+      const safeLeft  = 150;
+      const safeRight = Math.min(vw - 180, vw * 0.85);
+      const bandW     = safeRight - safeLeft - FLY_SIZE;
+      const flyX      = safeLeft + ((organicX(t) + 1) / 2) * bandW;
 
-      // Tilt slightly in the direction of horizontal movement
-      const tilt = Math.cos(angle) * amplitude * waves * Math.PI * 2 / docH;
-      const rotateDeg = Math.max(-22, Math.min(22, tilt * 300));
+      // Vertical: organic function mapped from just below nav to just above theme btn
+      const topY  = navH + 18;
+      const botY  = vh - FLY_SIZE - 70;
+      const flyY  = topY + organicY(t) * (botY - topY);
 
-      scrollFly.style.left = flyX + 'px';
-      scrollFly.style.top  = flyY + 'px';
-      scrollFly.style.transform = `rotate(${rotateDeg}deg)`;
+      // Tilt: direction of horizontal motion
+      const dx       = organicXprime(t);
+      const tiltDeg  = Math.max(-28, Math.min(28, dx * 90));
+
+      scrollFly.style.left      = flyX + 'px';
+      scrollFly.style.top       = flyY + 'px';
+      scrollFly.style.transform = `rotate(${tiltDeg}deg)`;
     }
 
     window.addEventListener('scroll', updateScrollFly, { passive: true });
+    window.addEventListener('resize', updateScrollFly, { passive: true });
     updateScrollFly();
   </script>
 </body>

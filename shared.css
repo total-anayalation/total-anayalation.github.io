@@ -95,13 +95,15 @@ nav {
 
 .nav-home {
   font-family: 'Lora', serif;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: var(--plum);
   text-decoration: none;
   letter-spacing: -0.01em;
   display: flex; align-items: center; gap: 0.5rem;
+  white-space: nowrap;
 }
+.nav-home .logo-text { display: inline; }
 .nav-home em { font-style: italic; color: var(--violet); }
 
 .nav-links { display: flex; gap: 0.3rem; flex-wrap: wrap; }
