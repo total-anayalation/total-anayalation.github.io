@@ -233,3 +233,14 @@ footer a { color: var(--violet); text-decoration: none; }
 .d4 { transition-delay: 0.42s; }
 
 .page-header { animation: fadeUp 0.5s 0.05s ease both; }
+
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .rv { opacity: 1 !important; transform: none !important; }
+}
