@@ -420,6 +420,14 @@
     .d3 { transition-delay: 0.30s; }
     .d4 { transition-delay: 0.42s; }
 
+    /* ── HAND-DRAWN BUTTERFLY (hero + footer) ── */
+    .hero-fly-img { height: 92px; width: auto; }
+    .foot-fly { height: 26px; width: auto; vertical-align: middle; margin-right: 0.4rem; opacity: 0.6; }
+    .ink-dark { display: inline-block; }
+    .ink-light { display: none; }
+    [data-theme="dark"] .ink-dark { display: none; }
+    [data-theme="dark"] .ink-light { display: inline-block; }
+
     /* ── REDUCED MOTION ── */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -560,23 +568,8 @@
   <section class="sec" id="s-hero">
     <div class="inner" style="text-align:center;">
       <div class="hero-fly-anchor" id="hero-fly-anchor">
-        <svg width="76" height="76" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="fwGh" x1="0.1" y1="0.1" x2="0.9" y2="0.9"><stop offset="0" stop-color="#9b6ad4"/><stop offset="1" stop-color="#4a2578"/></linearGradient>
-            <linearGradient id="hwGh" x1="0.2" y1="0" x2="0.6" y2="1"><stop offset="0" stop-color="#b98fe0"/><stop offset="1" stop-color="#6b3fa0"/></linearGradient>
-          </defs>
-          <g stroke="#2e1050" stroke-width="1.1" stroke-linejoin="round">
-            <g id="wRh"><path fill="url(#fwGh)" d="M31,30 C34,20 44,12 54,15 C59,17 60,25 55,29 C48,33 38,33 31,32 Z"/><path fill="url(#hwGh)" d="M31,33 C38,34 50,36 53,44 C55,50 49,55 42,52 C36,49 33,42 31,37 Z"/></g>
-            <use href="#wRh" transform="matrix(-1,0,0,1,64,0)"/>
-          </g>
-          <g fill="#f0e4ff"><circle cx="50" cy="20" r="1.7"/><circle cx="53.5" cy="24.5" r="1.2"/><circle cx="14" cy="20" r="1.7"/><circle cx="10.5" cy="24.5" r="1.2"/><circle cx="47" cy="46" r="1.3"/><circle cx="17" cy="46" r="1.3"/></g>
-          <ellipse cx="32" cy="34" rx="2.1" ry="10.5" fill="#2e1050"/>
-          <circle cx="32" cy="23" r="2.4" fill="#2e1050"/>
-          <path d="M32,22 C30,16 27,12 23.5,11" fill="none" stroke="#2e1050" stroke-width="1.3" stroke-linecap="round"/>
-          <path d="M32,22 C34,16 37,12 40.5,11" fill="none" stroke="#2e1050" stroke-width="1.3" stroke-linecap="round"/>
-          <circle cx="23" cy="10.5" r="1.5" fill="#2e1050"/>
-          <circle cx="41" cy="10.5" r="1.5" fill="#2e1050"/>
-        </svg>
+        <img class="hero-fly-img ink-dark" src="butterfly-dark.png" alt="Hand-drawn butterfly" width="78" height="92">
+        <img class="hero-fly-img ink-light" src="butterfly-light.png" alt="" aria-hidden="true" width="78" height="92">
       </div>
       <h1 class="site-name">A<em>naya</em></h1>
       <div class="tagline">CS · Data Science · Education Policy · UW–Madison · Sophomore</div>
@@ -673,18 +666,7 @@
   </section>
 
   <footer>
-    <svg width="22" height="22" viewBox="0 0 64 64" style="vertical-align:middle;margin-right:0.4rem;opacity:0.55;" xmlns="http://www.w3.org/2000/svg">
-      <g stroke="#6b3fa0" stroke-width="1" stroke-linejoin="round">
-        <g id="wRfoot"><path fill="#a67fd4" d="M31,30 C34,20 44,12 54,15 C59,17 60,25 55,29 C48,33 38,33 31,32 Z"/><path fill="#c4a0e8" d="M31,33 C38,34 50,36 53,44 C55,50 49,55 42,52 C36,49 33,42 31,37 Z"/></g>
-        <use href="#wRfoot" transform="matrix(-1,0,0,1,64,0)"/>
-      </g>
-      <ellipse cx="32" cy="34" rx="2.1" ry="10.5" fill="#6b3fa0"/>
-      <circle cx="32" cy="23" r="2.4" fill="#6b3fa0"/>
-      <path d="M32,22 C30,16 27,12 23.5,11" fill="none" stroke="#6b3fa0" stroke-width="1.2" stroke-linecap="round"/>
-      <path d="M32,22 C34,16 37,12 40.5,11" fill="none" stroke="#6b3fa0" stroke-width="1.2" stroke-linecap="round"/>
-      <circle cx="23" cy="10.5" r="1.4" fill="#6b3fa0"/>
-      <circle cx="41" cy="10.5" r="1.4" fill="#6b3fa0"/>
-    </svg>
+    <img class="foot-fly ink-dark" src="butterfly-dark.png" alt="" aria-hidden="true"><img class="foot-fly ink-light" src="butterfly-light.png" alt="" aria-hidden="true">
     anaya · uw–madison · <a href="contact.html">say hi</a>
   </footer>
 

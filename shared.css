@@ -244,3 +244,10 @@ footer a { color: var(--violet); text-decoration: none; }
   }
   .rv { opacity: 1 !important; transform: none !important; }
 }
+
+/* ── HAND-DRAWN BUTTERFLY (footer) ── */
+.foot-fly { height: 24px; width: auto; vertical-align: middle; margin-right: 0.45rem; opacity: 0.6; }
+.ink-dark { display: inline-block; }
+.ink-light { display: none; }
+[data-theme="dark"] .ink-dark { display: none; }
+[data-theme="dark"] .ink-light { display: inline-block; }
