@@ -1,6 +1,13 @@
 /* shared.css — Anaya · simple & handmade */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+@font-face {
+  font-family: 'Handwriting';
+  src: url('fonts/handwriting.woff') format('woff'),
+       url('fonts/handwriting.ttf') format('truetype');
+  font-weight: normal; font-style: normal; font-display: swap;
+}
+
 :root, [data-theme="light"] {
   --bg:       #fdf9ff;
   --ink:      #2b1a40;
@@ -87,7 +94,13 @@ h2 {
 p { margin-bottom: 1rem; }
 a { color: var(--violet); text-underline-offset: 2px; }
 strong { color: var(--ink); font-weight: 600; }
-.lead-in { font-size: 1.08rem; margin: 1.6rem 0 1.2rem; }
+/* ── HANDWRITTEN BODY TEXT ── */
+.wrap p, ul.list > li {
+  font-family: 'Handwriting', 'DM Sans', system-ui, sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+.lead-in { font-size: 1.34rem; line-height: 1.5; margin: 1.6rem 0 1.2rem; }
 
 /* ---- simple lists (no boxes) ---- */
 ul.list { list-style: none; margin: .4rem 0 1.4rem; }
