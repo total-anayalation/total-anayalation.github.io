@@ -7,6 +7,16 @@
        url('fonts/handwriting.ttf') format('truetype');
   font-weight: normal; font-style: normal; font-display: swap;
 }
+/* second handwriting font — fills in the punctuation the first one lacks
+   (– — : ; @ ·), scaled up to match its x-height */
+@font-face {
+  font-family: 'Handwriting';
+  src: url('fonts/handwriting-punct.woff') format('woff'),
+       url('fonts/handwriting-punct.otf') format('opentype');
+  font-weight: normal; font-style: normal; font-display: swap;
+  size-adjust: 122.3%;
+  unicode-range: U+002D, U+2013, U+2014, U+003A, U+003B, U+0040, U+00B7;
+}
 
 :root, [data-theme="light"] {
   --bg:       #fdf9ff;
