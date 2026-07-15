@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Now — Anaya</title>
-  <meta name="description" content="What Anaya Mandal is up to this semester at UW–Madison — classes, projects, and current preoccupations.">
+  <meta name="description" content="What Anaya Mandal is up to right now — summer research at UChicago's XLab, emergent misalignment datasets, and the Wisconsin AI Safety Initiative.">
   <meta name="author" content="Anaya Mandal">
   <meta name="theme-color" content="#6b3fa0">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Now — Anaya">
-  <meta property="og:description" content="A living snapshot of what's occupying Anaya's time and attention right now.">
+  <meta property="og:description" content="A snapshot of what's occupying Anaya's time and attention right now.">
   <meta property="og:url" content="https://total-anayalation.github.io/now.html">
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:image" content="https://total-anayalation.github.io/og-image.png">
@@ -20,86 +20,61 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg stroke='%232e1050' stroke-width='1.1' stroke-linejoin='round'%3E%3Cpath fill='%237d4fb8' d='M31,30 C34,20 44,12 54,15 C59,17 60,25 55,29 C48,33 38,33 31,32 Z'/%3E%3Cpath fill='%23a878d8' d='M31,33 C38,34 50,36 53,44 C55,50 49,55 42,52 C36,49 33,42 31,37 Z'/%3E%3Cpath fill='%237d4fb8' d='M33,30 C30,20 20,12 10,15 C5,17 4,25 9,29 C16,33 26,33 33,32 Z'/%3E%3Cpath fill='%23a878d8' d='M33,33 C26,34 14,36 11,44 C9,50 15,55 22,52 C28,49 31,42 33,37 Z'/%3E%3C/g%3E%3Cellipse cx='32' cy='34' rx='2.1' ry='10.5' fill='%232e1050'/%3E%3Ccircle cx='32' cy='23' r='2.4' fill='%232e1050'/%3E%3Cpath d='M32,22 C30,16 27,12 23.5,11' fill='none' stroke='%232e1050' stroke-width='1.3' stroke-linecap='round'/%3E%3Cpath d='M32,22 C34,16 37,12 40.5,11' fill='none' stroke='%232e1050' stroke-width='1.3' stroke-linecap='round'/%3E%3Ccircle cx='23' cy='10.5' r='1.5' fill='%232e1050'/%3E%3Ccircle cx='41' cy='10.5' r='1.5' fill='%232e1050'/%3E%3C/svg%3E">
-  <style>
-    .now-date { display:inline-flex;align-items:center;gap:0.45rem;background:var(--mist);border:1px solid var(--border);border-radius:100px;padding:0.3rem 0.95rem;font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--violet);letter-spacing:0.06em;margin-bottom:2rem; }
-    .dot-live { display:inline-block;width:8px;height:8px;background:#6dbb84;border-radius:50%;box-shadow:0 0 0 3px rgba(109,187,132,0.25);animation:pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{box-shadow:0 0 0 3px rgba(109,187,132,0.25);}50%{box-shadow:0 0 0 6px rgba(109,187,132,0.10);} }
-    .now-sec { margin-bottom:2.2rem; }
-    .now-sec h2 { font-family:'Lora',serif;font-size:1.15rem;font-weight:600;color:var(--plum);margin-bottom:0.85rem;display:flex;align-items:center;gap:0.45rem; }
-    .now-list { list-style:none;display:flex;flex-direction:column;gap:0.55rem; }
-    .now-list li { display:flex;align-items:flex-start;gap:0.7rem;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:0.8rem 1.1rem;font-size:0.86rem;color:var(--ink3);line-height:1.55;backdrop-filter:blur(8px);transition:border-color 0.2s; }
-    .now-list li:hover { border-color:var(--lavender); }
-  </style>
 </head>
 <body>
-  <div class="blob blob-1"></div><div class="blob blob-2"></div>
   <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme">
     <span class="icon-sun">☀️</span><span class="icon-moon">🌙</span>
   </button>
-  <nav>
-    <a href="index.html" class="nav-home"><svg width="20" height="20" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="fwGn" x1="0.1" y1="0.1" x2="0.9" y2="0.9"><stop offset="0" stop-color="#9b6ad4"/><stop offset="1" stop-color="#4a2578"/></linearGradient>
-          <linearGradient id="hwGn" x1="0.2" y1="0" x2="0.6" y2="1"><stop offset="0" stop-color="#b98fe0"/><stop offset="1" stop-color="#6b3fa0"/></linearGradient>
-        </defs>
-        <g stroke="#2e1050" stroke-width="1.1" stroke-linejoin="round">
-          <g id="wRn"><path fill="url(#fwGn)" d="M31,30 C34,20 44,12 54,15 C59,17 60,25 55,29 C48,33 38,33 31,32 Z"/><path fill="url(#hwGn)" d="M31,33 C38,34 50,36 53,44 C55,50 49,55 42,52 C36,49 33,42 31,37 Z"/></g>
-          <use href="#wRn" transform="matrix(-1,0,0,1,64,0)"/>
-        </g>
-        <g fill="#f0e4ff"><circle cx="50" cy="20" r="1.7"/><circle cx="53.5" cy="24.5" r="1.2"/><circle cx="14" cy="20" r="1.7"/><circle cx="10.5" cy="24.5" r="1.2"/><circle cx="47" cy="46" r="1.3"/><circle cx="17" cy="46" r="1.3"/></g>
-        <ellipse cx="32" cy="34" rx="2.1" ry="10.5" fill="#2e1050"/>
-        <circle cx="32" cy="23" r="2.4" fill="#2e1050"/>
-        <path d="M32,22 C30,16 27,12 23.5,11" fill="none" stroke="#2e1050" stroke-width="1.3" stroke-linecap="round"/>
-        <path d="M32,22 C34,16 37,12 40.5,11" fill="none" stroke="#2e1050" stroke-width="1.3" stroke-linecap="round"/>
-        <circle cx="23" cy="10.5" r="1.5" fill="#2e1050"/>
-        <circle cx="41" cy="10.5" r="1.5" fill="#2e1050"/>
-      </svg><span class="logo-text">An<em>aya</em></span></a>
-    <div class="nav-links">
-      <a href="about.html">About</a>
-      <a href="now.html" class="active">Now</a>
-      <a href="blog.html">Writing</a>
-      <a href="interests.html">Interests</a>
-      <a href="reading.html">Reading</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </nav>
-  <div class="page">
-    <div class="page-header">
-      <div class="page-kicker">📡 a living snapshot</div>
-      <h1 class="page-title">What I'm <em>Up To</em></h1>
-      <div class="sline"></div>
-      <p class="page-sub">A /now page — a snapshot of what's occupying my time, brain, and attention. Summer 2026.</p>
-    </div>
-    <div class="now-date"><span class="dot-live"></span> Updated — Summer 2026</div>
 
-    <div class="now-sec rv">
-      <h2>☀️ This Summer</h2>
-      <ul class="now-list">
-        <li><span>🎓</span><span>Running operations for <strong>UChicago's Existential Risk Lab (XLab)</strong> as part of their summer research fellowship.</span></li>
-        <li><span>🧪</span><span>Building <strong>datasets for emergent misalignment research</strong> — turning a fuzzy research question into something you can actually measure.</span></li>
-        <li><span>🌱</span><span>Helping out with the <strong>Wisconsin AI Safety Initiative (WAISI)</strong>.</span></li>
-        <li><span>📚</span><span>No classes at the moment — it's summer, which means more room for research and side quests.</span></li>
-      </ul>
-    </div>
+  <div class="wrap">
+    <nav class="nav">
+      <a href="index.html" class="nav-home">
+        <img class="ink-dark" src="butterfly-dark.png" alt="" aria-hidden="true">
+        <img class="ink-light" src="butterfly-light.png" alt="" aria-hidden="true">
+        <span>An<em>aya</em></span>
+      </a>
+      <div class="nav-links">
+        <a href="about.html">About</a>
+        <a href="now.html" class="active">Now</a>
+        <a href="blog.html">Writing</a>
+        <a href="interests.html">Interests</a>
+        <a href="reading.html">Reading</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
 
-    <div class="now-sec rv d2">
-      <h2>🌀 Thinking About</h2>
-      <ul class="now-list">
-        <li><span>💭</span><span>What actually makes a model become misaligned — and how you'd catch it early.</span></li>
-        <li><span>💭</span><span>How the AI safety and policy worlds could do a better job talking to each other.</span></li>
-        <li><span>💭</span><span>Whether good research is bottlenecked more by ideas or by operations.</span></li>
-      </ul>
-    </div>
+    <div class="kicker">what i'm up to</div>
+    <h1 class="title">Now</h1>
+    <p class="sub">A snapshot of what's occupying my time, brain, and attention.</p>
+
+    <h2>This summer</h2>
+    <ul class="list">
+      <li>Running operations for <strong>UChicago's Existential Risk Lab (XLab)</strong> as part of their summer research fellowship.</li>
+      <li>Building <strong>datasets for emergent misalignment research</strong> — turning a fuzzy research question into something you can actually measure.</li>
+      <li>Continuing as deputy director of the <strong>Wisconsin AI Safety Initiative (WAISI)</strong>.</li>
+      <li>No classes at the moment — it's summer, which means more room for research and side quests.</li>
+    </ul>
+
+    <h2>Thinking about</h2>
+    <ul class="list">
+      <li>What actually makes a model become misaligned — and how you'd catch it early.</li>
+      <li>How the AI safety and policy worlds could do a better job talking to each other.</li>
+      <li>Whether good research is bottlenecked more by ideas or by operations.</li>
+    </ul>
+
+    <footer>
+      <img class="foot-fly ink-dark" src="butterfly-dark.png" alt="" aria-hidden="true">
+      <img class="foot-fly ink-light" src="butterfly-light.png" alt="" aria-hidden="true">
+      <span>anaya · uw–madison · <a href="contact.html">say hi</a></span>
+    </footer>
   </div>
-  <footer><img class="foot-fly ink-dark" src="butterfly-dark.png" alt="" aria-hidden="true"><img class="foot-fly ink-light" src="butterfly-light.png" alt="" aria-hidden="true">anaya · uw–madison · <a href="contact.html">say hi</a></footer>
+
   <script>
     function toggleTheme() {
-      const d = document.documentElement.getAttribute('data-theme') === 'dark';
+      var d = document.documentElement.getAttribute('data-theme') === 'dark';
       document.documentElement.setAttribute('data-theme', d ? 'light' : 'dark');
       localStorage.setItem('anaya-theme', d ? 'light' : 'dark');
     }
-    const rvObs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('on'); }), {threshold:0.1});
-    document.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
   </script>
 </body>
 </html>
