@@ -107,10 +107,11 @@ strong { color: var(--ink); font-weight: 600; }
 /* ── HANDWRITTEN BODY TEXT ── */
 .wrap p, ul.list > li {
   font-family: 'Handwriting', 'DM Sans', system-ui, sans-serif;
-  font-size: 1.2rem;
-  line-height: 1.6;
+  font-size: 1.34rem;
+  line-height: 1.64;
+  -webkit-text-stroke: 0.4px currentColor;
 }
-.lead-in { font-size: 1.34rem; line-height: 1.5; margin: 1.6rem 0 1.2rem; }
+.lead-in { font-size: 1.48rem; line-height: 1.52; margin: 1.6rem 0 1.2rem; }
 
 /* ---- simple lists (no boxes) ---- */
 ul.list { list-style: none; margin: .4rem 0 1.4rem; }
