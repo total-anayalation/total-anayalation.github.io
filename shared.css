@@ -162,10 +162,6 @@ footer a:hover { text-decoration: underline; }
   color: var(--plum); letter-spacing: -.03em;
 }
 .home-name em { font-style: italic; }
-.home-tag {
-  font-family: 'DM Mono', monospace; font-size: .72rem; letter-spacing: .1em;
-  text-transform: uppercase; color: var(--lavender); margin-top: .85rem;
-}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
