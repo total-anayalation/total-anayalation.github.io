@@ -8,7 +8,7 @@
   font-weight: normal; font-style: normal; font-display: swap;
 }
 /* second handwriting font — fills in the punctuation the first one lacks
-   (– — : ; @ ·), scaled up to match its x-height */
+   (– — : ; @ · [ ]), scaled up to match its x-height */
 @font-face {
   font-family: 'Handwriting';
   src: url('fonts/handwriting-punct.woff') format('woff'),
