@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://anayamandal.com/</loc></url>
-  <url><loc>https://anayamandal.com/blog.html</loc></url>
-  <url><loc>https://anayamandal.com/now.html</loc></url>
-  <url><loc>https://anayamandal.com/interests.html</loc></url>
-  <url><loc>https://anayamandal.com/about.html</loc></url>
-  <url><loc>https://anayamandal.com/contact.html</loc></url>
-  <url><loc>https://anayamandal.com/reading.html</loc></url>
+  <url><loc>https://anayamandal.com/blog</loc></url>
+  <url><loc>https://anayamandal.com/now</loc></url>
+  <url><loc>https://anayamandal.com/interests</loc></url>
+  <url><loc>https://anayamandal.com/about</loc></url>
+  <url><loc>https://anayamandal.com/contact</loc></url>
+  <url><loc>https://anayamandal.com/reading</loc></url>
 </urlset>
