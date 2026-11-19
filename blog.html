@@ -22,11 +22,13 @@
   <link rel="stylesheet" href="shared.css">
   <style>
     .post {
-      position: relative; display: block; margin: 2.6rem 0 1.6rem; padding: 1.4rem 1.5rem 1.25rem 2.2rem;
+      --line: 1.9rem;
+      position: relative; display: block; margin: 2.6rem 0 1.6rem;
+      padding: var(--line) 1.5rem calc(var(--line) * .5) 2.2rem;
       border: 1.5px solid var(--lavender);
       background:
         linear-gradient(90deg, transparent 1.25rem, color-mix(in srgb, #e86a92 55%, transparent) 1.25rem, color-mix(in srgb, #e86a92 55%, transparent) calc(1.25rem + 1.5px), transparent calc(1.25rem + 1.5px)),
-        repeating-linear-gradient(to bottom, transparent 0 calc(1.6rem - 1px), var(--rule) calc(1.6rem - 1px) 1.6rem),
+        repeating-linear-gradient(to bottom, transparent 0 calc(var(--line) - 1px), var(--rule) calc(var(--line) - 1px) var(--line)),
         var(--bg);
       color: var(--ink); text-decoration: none;
       transform: rotate(-.7deg);
@@ -41,40 +43,33 @@
         color-mix(in srgb, var(--lavender) 55%, transparent) 0 6px,
         color-mix(in srgb, var(--lavender) 35%, transparent) 6px 12px);
     }
-    /* little flower */
-    .post::after {
-      content: '✿'; position: absolute; top: .55rem; right: .8rem;
-      font-size: 1.15rem; color: var(--lavender); line-height: 1;
-      transition: transform .4s ease, color .2s;
-    }
     .post:hover, .post:focus-visible {
       transform: translateY(-4px) rotate(.4deg);
       box-shadow: 7px 7px 0 color-mix(in srgb, var(--lavender) 45%, transparent);
       border-color: var(--violet);
     }
-    .post:hover::after, .post:focus-visible::after { transform: rotate(72deg) scale(1.15); color: var(--violet); }
     @media (prefers-reduced-motion: reduce) {
-      .post, .post::after { transition: none; }
+      .post { transition: none; }
     }
-    .post span { display: block; }
-    .post-date::before { content: '♡ '; }
+    /* every line of text sits on a ruled line */
+    .post span { display: block; position: relative; margin: 0; line-height: var(--line); }
     .post-date {
-      font-family: 'DM Mono', monospace; font-size: .68rem;
+      font-family: 'DM Mono', monospace; font-size: .68rem; top: .5rem;
       letter-spacing: .16em; text-transform: uppercase; color: var(--lavender);
     }
     .post-title {
-      font-family: 'Lora', serif; font-weight: 600; font-size: 1.7rem;
-      color: var(--plum); letter-spacing: -.02em; margin: .25rem 0 .05rem;
+      font-family: 'Lora', serif; font-weight: 600; font-size: 1.7rem; top: .22rem;
+      color: var(--plum); letter-spacing: -.02em;
     }
-    .post-sub { font-family: 'Lora', serif; font-style: italic; color: var(--violet); }
+    .post-sub { font-family: 'Lora', serif; font-style: italic; color: var(--violet); top: .4rem; }
     .post-blurb {
       font-family: 'Handwriting', 'DM Sans', system-ui, sans-serif;
-      font-size: 1.3rem; line-height: 1.5; margin-top: .6rem; color: var(--ink);
+      font-size: 1.3rem; color: var(--ink); top: .48rem;
       -webkit-text-stroke: 0.4px currentColor;
     }
-    .post-cta {
-      font-family: 'DM Mono', monospace; font-size: .74rem; margin-top: .8rem;
-      color: var(--violet);
+    .post .post-cta {
+      font-family: 'DM Mono', monospace; font-size: .74rem; top: .48rem;
+      margin-top: var(--line); color: var(--violet);
     }
     .post:hover .post-cta { text-decoration: underline; text-underline-offset: 3px; }
   </style>
