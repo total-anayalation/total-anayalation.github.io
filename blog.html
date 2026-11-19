@@ -20,6 +20,38 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
+  <style>
+    .post {
+      display: block; margin: 1.8rem 0 1.4rem; padding: 1.15rem 1.4rem 1.2rem;
+      border: 1.5px solid var(--lavender); border-radius: 18px 22px 16px 24px;
+      background: var(--bg); color: var(--ink); text-decoration: none;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s;
+    }
+    .post:hover, .post:focus-visible {
+      transform: translateY(-3px) rotate(-.5deg);
+      box-shadow: 5px 5px 0 var(--rule); border-color: var(--violet);
+    }
+    .post span { display: block; }
+    .post-date {
+      font-family: 'DM Mono', monospace; font-size: .68rem;
+      letter-spacing: .16em; text-transform: uppercase; color: var(--lavender);
+    }
+    .post-title {
+      font-family: 'Lora', serif; font-weight: 600; font-size: 1.7rem;
+      color: var(--plum); letter-spacing: -.02em; margin: .25rem 0 .05rem;
+    }
+    .post-sub { font-family: 'Lora', serif; font-style: italic; color: var(--violet); }
+    .post-blurb {
+      font-family: 'Handwriting', 'DM Sans', system-ui, sans-serif;
+      font-size: 1.3rem; line-height: 1.5; margin-top: .6rem; color: var(--ink);
+      -webkit-text-stroke: 0.4px currentColor;
+    }
+    .post-cta {
+      font-family: 'DM Mono', monospace; font-size: .74rem; margin-top: .8rem;
+      color: var(--violet);
+    }
+    .post:hover .post-cta { text-decoration: underline; text-underline-offset: 3px; }
+  </style>
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
@@ -53,8 +85,15 @@
     <h1 class="title">Writing</h1>
     <p class="sub">Essays and notes on AI, education, and where they meet — some polished, some thinking out loud.</p>
 
-    <p class="lead-in">Nothing published here yet — I'm working on the first few pieces.</p>
-    <p>Check back soon, or <a href="/contact">say hi</a> if you'd like me to let you know when something goes up.</p>
+    <a class="post" href="https://totalanayalation.substack.com/p/the-krillion" target="_blank" rel="noopener">
+      <span class="post-date">nov 12, 2026</span>
+      <span class="post-title">The Krillion</span>
+      <span class="post-sub">and other daily games</span>
+      <span class="post-blurb">short timelines, a bucket list, and wanting the people I love to love me back.</span>
+      <span class="post-cta">read it on substack →</span>
+    </a>
+
+    <p>More on the way — or <a href="/contact">say hi</a> if you'd like me to let you know when something goes up.</p>
 
     <footer>
       <img class="foot-fly ink-dark" src="butterfly-dark.png" alt="" aria-hidden="true">
